@@ -1,0 +1,73 @@
+{
+    // ============================================================
+    // launch.json - Configuracion de Debug (Depuracion) en VS Code
+    // ============================================================
+    // Le dice a VS Code COMO ejecutar y depurar la aplicacion:
+    //   - Que depurador usar (coreclr = .NET)
+    //   - Donde esta el ejecutable compilado (.dll)
+    //   - Que tarea ejecutar antes (build)
+    //   - En que URL abrir el navegador
+    //
+    // Sin este archivo, F5 no sabe como iniciar el debugger .NET.
+    // ============================================================
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // "name": Nombre visible en el menu desplegable de
+            //         debug (barra superior de VS Code, junto a F5).
+            "name": "Depurar ApiGenericaCsharp",
+
+            // "type": Tipo de depurador.
+            //   "coreclr" = depurador de .NET Core / .NET 5+
+            //   Permite breakpoints, inspeccionar variables, etc.
+            "type": "coreclr",
+
+            // "request": Modo de inicio.
+            //   "launch" = VS Code INICIA la aplicacion.
+            //   "attach" = conectarse a un proceso ya corriendo.
+            "request": "launch",
+
+            // "preLaunchTask": Ejecuta esta tarea de tasks.json
+            //   ANTES de iniciar el debug. Asegura que el proyecto
+            //   este compilado y actualizado.
+            "preLaunchTask": "build",
+
+            // "program": Ruta a la DLL compilada.
+            //   Despues de "dotnet build", la DLL queda en
+            //   bin/Debug/net9.0/
+            "program": "${workspaceFolder}/bin/Debug/net9.0/ApiGenericaCsharp.dll",
+
+            // "args": Argumentos de linea de comandos (ninguno).
+            "args": [],
+
+            // "cwd": Directorio de trabajo. La API busca
+            //   appsettings.json relativo a esta ruta.
+            "cwd": "${workspaceFolder}",
+
+            // "stopAtEntry": false = solo se detiene en breakpoints
+            //   que pongas manualmente (puntos rojos).
+            //   true = se detendria en la primera linea de Program.cs.
+            "stopAtEntry": false,
+
+            // "serverReadyAction": Cuando la API imprime
+            //   "Now listening on: http://localhost:5034"
+            //   VS Code abre automaticamente el navegador en /swagger.
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bhttp(s?)://\\S+",
+                "uriFormat": "%s/swagger"
+            },
+
+            // "env": Variables de entorno.
+            //   Development activa: errores detallados, Swagger,
+            //   logs verbosos, appsettings.Development.json.
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+
+            // "console": Donde se ven los logs de la API.
+            //   "internalConsole" = panel de debug de VS Code.
+            "console": "internalConsole"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    // ============================================================
+    // tasks.json - Tareas automatizadas de VS Code
+    // ============================================================
+    // Define la tarea de compilacion ("dotnet build") que se
+    // ejecuta automaticamente ANTES de iniciar el debug.
+    // launch.json la referencia por el campo "preLaunchTask".
+    //
+    // Analogia: Es como precalentar el horno antes de cocinar.
+    //           VS Code "compila" antes de "ejecutar".
+    // ============================================================
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // "label": Nombre interno de la tarea.
+            //          launch.json la referencia por este nombre.
+            "label": "build",
+
+            // "command": Ejecuta el CLI de .NET.
+            "command": "dotnet",
+
+            // "type": "process" = se ejecuta como proceso del
+            //         sistema operativo (no dentro de un shell).
+            "type": "process",
+
+            // "args": Argumentos del comando "dotnet build".
+            //   - Ruta al .csproj del proyecto
+            //   - GenerateFullPaths: rutas completas en errores
+            //     para que VS Code navegue al archivo con click
+            //   - FormatForVisualStudio: formato legible para VS Code
+            "args": [
+                "build",
+                "${workspaceFolder}/ApiGenericaCsharp.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;FormatForVisualStudio"
+            ],
+
+            // "problemMatcher": Le dice a VS Code como interpretar
+            //   errores de compilacion. "$msCompile" = formato de
+            //   errores de C#/.NET. Los errores aparecen subrayados
+            //   en rojo directamente en el editor.
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

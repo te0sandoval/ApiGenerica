@@ -1,0 +1,20 @@
+# Carpetas de compilación
+bin/
+obj/
+
+# Configuración de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Configuración de VS Code (se incluye para el tutorial paso a paso)
+# .vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de entorno
+.env
+appsettings.Development.json
+

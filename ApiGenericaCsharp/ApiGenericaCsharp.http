@@ -1,0 +1,6 @@
+@ApiGenericaCsharp_HostAddress = http://localhost:5034
+
+GET {{ApiGenericaCsharp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
